@@ -1,26 +1,29 @@
 package com.bit.anas;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import com.sun.xml.internal.messaging.saaj.packaging.mime.util.LineInputStream;
+
+import java.util.*;
 
 public class Anagram {
 
     public static void action(String[] text){
         StringBuilder sb = new StringBuilder();
-        Map<String,Integer> map = new HashMap<String,Integer>();
+
+        List<String> list= new ArrayList<String>();
         for(int i =0 ; i<= text.length-1;i++){
             for(int j=0;j<=text.length-1;j++){
                 if(i!=j && isAnagram(text[i],text[j])){
-                    map.put(text[i],0);
+
+                    if(!list.contains(text[i])){
+                        list.add(text[i]);
+                    }
                 }
             }
         }
 
-        for(Map.Entry m:map.entrySet()){
-            sb.append(m.getKey()).append(" ");
+        for(String s:list){
+            sb.append(s).append(" ");
         }
-
         System.out.println(sb.toString());
     }
     private static  Boolean isAnagram(String s1,String s2){
